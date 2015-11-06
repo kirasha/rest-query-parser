@@ -1,0 +1,23 @@
+{
+  "name": "rest-query-parser",
+  "version": "0.0.1",
+  "description": "A simple parser for your REST queries",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "keywords": [
+    "express",
+    "rest",
+    "parser",
+    "node.js"
+  ],
+  "author": "diokey",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.13.3",
+    "mocha": "^2.3.3",
+    "should": "^7.1.1",
+    "supertest": "^1.1.0"
+  }
+}
