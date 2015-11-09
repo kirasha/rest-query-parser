@@ -116,17 +116,17 @@ describe('RestQueryParser', function () {
     });
 
     describe('sorting', function () {
-      it('Should be able to parse sorting field', function (done) {
+      it('Should be able to parse sort field', function (done) {
         request(app)
-        .get('/?sorting=name,-dateCreation')
+        .get('/?sort=name,-dateCreation')
         .expect(200)
         .expect('Content-type', /json/)
         .end(function (err, res) {
           should.not.exist(err);
           should.exist(res);
-          res.body.sorting.length.should.equal(2);
-          var nameSort = res.body.sorting[0];
-          var dateSort = res.body.sorting[1];
+          res.body.sort.length.should.equal(2);
+          var nameSort = res.body.sort[0];
+          var dateSort = res.body.sort[1];
           nameSort.should.have.property('name');
           nameSort.name.should.equal('asc');
           dateSort.should.have.property('dateCreation');
@@ -137,15 +137,15 @@ describe('RestQueryParser', function () {
 
       it('Should be able to parse sorting field as object', function (done) {
         request(app)
-        .get('/?sorting[name]=asc&sorting[dateCreation]=desc')
+        .get('/?sort[name]=asc&sort[dateCreation]=desc')
         .expect(200)
         .expect('Content-type', /json/)
         .end(function (err, res) {
           should.not.exist(err);
           should.exist(res);
-          res.body.sorting.length.should.equal(2);
-          var nameSort = res.body.sorting[0];
-          var dateSort = res.body.sorting[1];
+          res.body.sort.length.should.equal(2);
+          var nameSort = res.body.sort[0];
+          var dateSort = res.body.sort[1];
           nameSort.should.have.property('name');
           nameSort.name.should.equal('asc');
           dateSort.should.have.property('dateCreation');
@@ -390,7 +390,7 @@ describe('RestQueryParser', function () {
     describe('Multiple params', function () {
       it('should parse multiple params', function (done) {
         request(app)
-        .get('/?fields=name,username,age&filters=name~Jean;post<10;points[20-30]&page=1&size=5&sorting=name,-age&embed=permissions')
+        .get('/?fields=name,username,age&filters=name~Jean;post<10;points[20-30]&page=1&size=5&sort=name,-age&embed=permissions')
         .expect(200)
         .expect('Content-type', /json/)
         .end(function (err, res) {
@@ -415,9 +415,9 @@ describe('RestQueryParser', function () {
           res.body.pagination.should.have.properties(['page', 'size']);
           res.body.pagination.page.should.equal(1);
           res.body.pagination.size.should.equal(5);
-          res.body.sorting.length.should.equal(2);
-          var nameSort = res.body.sorting[0];
-          var ageSort = res.body.sorting[1];
+          res.body.sort.length.should.equal(2);
+          var nameSort = res.body.sort[0];
+          var ageSort = res.body.sort[1];
           nameSort.should.have.property('name');
           nameSort.name.should.equal('asc');
           ageSort.should.have.property('age');

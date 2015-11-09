@@ -179,7 +179,7 @@ module.exports = function () {
     pagination.page = pagination.page || req.query.page;
     pagination.size = pagination.size || req.query.size;
     restQuery.pagination = parse_pagination(pagination.page, pagination.size);
-    restQuery.sorting = parse_sorting(req.query.sorting);
+    restQuery.sort = parse_sorting(req.query.sort);
     restQuery.embed = parse_embeded(req.query.embed);
     req.restQuery = restQuery;
     next();
