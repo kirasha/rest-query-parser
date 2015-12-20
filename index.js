@@ -67,7 +67,7 @@ module.exports = function () {
             break;
           }
           case 'in': {
-            values = val.split(',').map(parse_number);
+            values = val.split(',');
             break;
           }
         }
